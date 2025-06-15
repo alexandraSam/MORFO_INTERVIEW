@@ -22,6 +22,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+# Install trunk
+RUN pip install --no-cache-dir trunk
+RUN trunk init
 # Copy source code
 COPY src/ ./src/
 COPY main.py .

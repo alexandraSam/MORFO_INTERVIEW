@@ -1,0 +1,23 @@
+name: Lint & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Lint with trunk
+        run: |
+          trunk check . --exclude=venv,__pycache__ --max-line-length=88
+
+      - name: Run tests
+        run: |
+          python -m unittest
